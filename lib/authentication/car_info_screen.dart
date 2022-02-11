@@ -13,6 +13,9 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
       TextEditingController();
   TextEditingController carColorTextEditingController = TextEditingController();
 
+  final List<String> carTypeList = ["Uber-X", "Uber-Go", "SUV", "Bike"];
+  String? selectedCarType;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +24,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
         child: Padding(
           padding: const EdgeInsets.all(22.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(
                 height: 50,
@@ -67,7 +71,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   keyboardType: TextInputType.text,
                   style: const TextStyle(color: Colors.amber),
                   decoration: const InputDecoration(
-                    labelText: "Email",
+                    labelText: "Car Number",
                     // hintText: "Name",
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blueGrey),
@@ -81,22 +85,51 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   ),
                 ),
               ),
-              TextField(
-                controller: carColorTextEditingController,
-                keyboardType: TextInputType.text,
-                style: const TextStyle(color: Colors.amber),
-                decoration: const InputDecoration(
-                  labelText: "Phone",
-                  // hintText: "Name",
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blueGrey),
-                      borderRadius:
-                          BorderRadius.all(Radius.elliptical(16, 16))),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: TextField(
+                  controller: carColorTextEditingController,
+                  keyboardType: TextInputType.text,
+                  style: const TextStyle(color: Colors.amber),
+                  decoration: const InputDecoration(
+                    labelText: "Car Color",
+                    // hintText: "Name",
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blueGrey),
+                        borderRadius:
+                            BorderRadius.all(Radius.elliptical(16, 16))),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    // hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
+                    labelStyle: TextStyle(fontSize: 16),
                   ),
-                  // hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                  labelStyle: TextStyle(fontSize: 16),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: DropdownButton(
+                  dropdownColor: Colors.white,
+                  iconSize: 20,
+                  hint: const Text(
+                    "Select Car Type",
+                    style: TextStyle(fontSize: 14.0, color: Colors.grey),
+                  ),
+                  value: selectedCarType,
+                  onChanged: (newValue) {
+                    setState(() {
+                      selectedCarType = newValue.toString();
+                    });
+                  },
+                  items: carTypeList.map((car) {
+                    return DropdownMenuItem(
+                      child: Text(
+                        car,
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                      value: car,
+                    );
+                  }).toList(),
                 ),
               ),
               Padding(
@@ -106,7 +139,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                     style:
                         ElevatedButton.styleFrom(primary: Colors.amberAccent),
                     child: const Text(
-                      "Create Account",
+                      "Save",
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     )),
               )

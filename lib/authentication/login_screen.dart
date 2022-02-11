@@ -1,18 +1,15 @@
-import 'package:cargo_driver/authentication/car_info_screen.dart';
-import 'package:cargo_driver/authentication/login_screen.dart';
+import 'package:cargo_driver/authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignupScreen extends StatefulWidget {
-  SignupScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  TextEditingController nameTextEditingController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
-  TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
 
   @override
@@ -35,32 +32,13 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Register as a driver",
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.bold),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: TextField(
-                  controller: nameTextEditingController,
-                  keyboardType: TextInputType.text,
-                  style: const TextStyle(color: Colors.amber),
-                  decoration: const InputDecoration(
-                    labelText: "Name",
-                    // hintText: "Name",
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey),
-                        borderRadius:
-                            BorderRadius.all(Radius.elliptical(16, 16))),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    // hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                    labelStyle: TextStyle(fontSize: 16),
-                  ),
+              const Center(
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
@@ -71,27 +49,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: const TextStyle(color: Colors.amber),
                   decoration: const InputDecoration(
                     labelText: "Email",
-                    // hintText: "Name",
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blueGrey),
-                        borderRadius:
-                            BorderRadius.all(Radius.elliptical(16, 16))),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                    ),
-                    // hintStyle: TextStyle(color: Colors.grey, fontSize: 10),
-                    labelStyle: TextStyle(fontSize: 16),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: TextField(
-                  controller: phoneTextEditingController,
-                  keyboardType: TextInputType.phone,
-                  style: const TextStyle(color: Colors.amber),
-                  decoration: const InputDecoration(
-                    labelText: "Phone",
                     // hintText: "Name",
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.blueGrey),
@@ -130,16 +87,11 @@ class _SignupScreenState extends State<SignupScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                    onPressed: () => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (c) => CarInfoScreen()))
-                        },
+                    onPressed: () => {},
                     style:
                         ElevatedButton.styleFrom(primary: Colors.amberAccent),
                     child: const Text(
-                      "Create Account",
+                      "Login",
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     )),
               ),
@@ -153,10 +105,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     // const ButtonStyle(foregroundColor: Colors.amberAccent),
                     onPressed: () => {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (c) => LoginScreen()))
+                              MaterialPageRoute(builder: (c) => SignupScreen()))
                         },
                     child: const Text(
-                      "Already have an Accout? Login",
+                      "Create a new Account",
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     )),
               ),

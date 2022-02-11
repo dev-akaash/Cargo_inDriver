@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cargo_driver/authentication/car_info_screen.dart';
+import 'package:cargo_driver/authentication/login_screen.dart';
 import 'package:cargo_driver/authentication/signup_screen.dart';
 import 'package:cargo_driver/mainScreens/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
   startTimer() {
     Timer(const Duration(seconds: 3), () async {
       //send user to main screen
-      Navigator.push(
-          context, MaterialPageRoute(builder: (c) => CarInfoScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (c) => LoginScreen()));
     });
   }
 
