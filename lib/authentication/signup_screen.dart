@@ -1,6 +1,7 @@
 import 'package:cargo_driver/authentication/car_info_screen.dart';
 import 'package:cargo_driver/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignupScreen extends StatefulWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -14,6 +15,22 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+
+  validateForm() {
+    if (nameTextEditingController.text.length < 3) {
+      Fluttertoast.showToast(msg: "Name must be atleast 3 charcater");
+    } else if (emailTextEditingController.text.contains("@")) {
+      Fluttertoast.showToast(msg: "Invalid email address");
+    } else if (phoneTextEditingController.text.isEmpty ||
+        phoneTextEditingController.text.length < 10) {
+      Fluttertoast.showToast(msg: "Invalid phone number");
+    } else if (passwordTextEditingController.text.length < 6) {
+      Fluttertoast.showToast(msg: "Password must be atleast 6 characters");
+    } else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (c) => CarInfoScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,10 +148,11 @@ class _SignupScreenState extends State<SignupScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                     onPressed: () => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (c) => CarInfoScreen()))
+                          validateForm()
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (c) => CarInfoScreen()))
                         },
                     style:
                         ElevatedButton.styleFrom(primary: Colors.amberAccent),
